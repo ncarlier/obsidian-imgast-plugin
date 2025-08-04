@@ -1,7 +1,7 @@
 import * as http from 'http'
 import * as https from 'https'
 import mime from 'mime'
-import { App, FileSystemAdapter, FuzzySuggestModal, Menu, Notice, Plugin, PluginSettingTab, Setting, TFile } from 'obsidian'
+import { App, FileSystemAdapter, FuzzySuggestModal, Menu, normalizePath, Notice, Plugin, PluginSettingTab, Setting, TFile } from 'obsidian'
 import { basename, resolve } from 'path'
 import { FormData } from "formdata-node"
 import { FormDataEncoder } from "form-data-encoder"
@@ -103,6 +103,7 @@ export default class ImgCastPlugin extends Plugin {
       new Notice("ImgCast: Unable to resolve image path. Please use FileSystemAdapter.")
       return null;
     }
+    filePath = normalizePath(filePath)
     console.debug("Resolved file path:", filePath)
     return this.app.vault.getFileByPath(filePath)
   }
