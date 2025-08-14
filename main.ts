@@ -90,7 +90,7 @@ export default class ImgCastPlugin extends Plugin {
 
   private getTFileFormHref(href: string): TFile | null {
     const url = new URL(href)
-    let filePath = url.pathname.substring(1) // Remove leading slash
+    let filePath = url.pathname // .substring(1) // Remove leading slash
     filePath = resolve(decodeURI(filePath)) // Decode URI components
     const adapter = this.app.vault.adapter
     if (adapter instanceof FileSystemAdapter) {
